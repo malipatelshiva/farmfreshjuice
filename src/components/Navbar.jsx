@@ -7,7 +7,7 @@ import { useState } from 'react';
 import logo from '../assets/logo.png';
 
 // ✅ CONTACT MODAL
-import ContactModal from '../components/ContactModal';
+import ContactModal from './ContactModal';
 
 function Navbar() {
   const location = useLocation();
@@ -21,7 +21,7 @@ function Navbar() {
     { to: '/gallery', label: 'Gallery' },
   ];
 
-  const isActive = (path: string) => location.pathname === path;
+  const isActive = (path) => location.pathname === path;
 
   return (
     <>
