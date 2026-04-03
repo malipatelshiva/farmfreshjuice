@@ -7,11 +7,11 @@ import avocado from '../assets/juices/Avocado.png';
 import banana from '../assets/juices/Banana.png';
 import beetroot from '../assets/juices/Betroot.png';
 import blackgrapes from '../assets/juices/BlackGrapes.png';
-import carrot from '../assets/juices/carrot.png';
+import carrot from '../assets/juices/Carrot.png';
 import dragon from '../assets/juices/Dargeon.png';
 import kiwi from '../assets/juices/Kiwi.png';
-import orange from '../assets/juices/orange.png';
-import watermelon from '../assets/juices/watermelon.png';
+import orange from '../assets/juices/Orange.png';
+import watermelon from '../assets/juices/Watermelon.png';
 
 function Gallery() {
   const juices = [

@@ -1,3 +1,4 @@
+
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Leaf, Heart, Droplets, ArrowRight } from 'lucide-react';
@@ -6,6 +7,11 @@ import PageTransition from '../components/PageTransition';
 // ✅ ASSETS
 import logo from '../assets/logo.png';
 import FloatingFruits from '../components/FloatingFruits';
+
+// ✅ NEW JUICE IMAGES
+import avocado from '../assets/juices/Avocado.png';
+import apple from '../assets/juices/Apple.png';
+import orange from '../assets/juices/Orange.png';
 
 function Home() {
   const features = [
@@ -29,10 +35,11 @@ function Home() {
     },
   ];
 
+  // ✅ UPDATED JUICES WITH IMAGES
   const juices = [
-    { name: 'Orange Delight', color: 'from-orange-400 to-orange-600' },
-    { name: 'Mango Magic', color: 'from-yellow-400 to-orange-500' },
-    { name: 'Strawberry Bliss', color: 'from-pink-400 to-red-500' },
+    { name: 'Apple Juice', image: apple },
+    { name: 'Orange Juice', image: orange },
+    { name: 'Avocado Juice', image: avocado },
   ];
 
   return (
@@ -75,7 +82,7 @@ function Home() {
               transition={{ delay: 0.4 }}
               className="text-lg sm:text-xl text-gray-600 mb-8 max-w-2xl mx-auto"
             >
-              Launch your own franchise under ₹2.5 Lakhs 🚀  
+              Launch your own franchise under ₹3.9 Lakhs 🚀  
               Proven model • High demand • Daily income
             </motion.p>
 
@@ -97,6 +104,7 @@ function Home() {
               <a
                 href="https://wa.me/917221892189"
                 target="_blank"
+                rel="noreferrer"
                 className="border-2 border-green-600 text-green-600 px-8 py-4 rounded-full font-semibold text-lg hover:bg-green-50"
               >
                 Talk on WhatsApp
@@ -149,14 +157,16 @@ function Home() {
                 <motion.div
                   key={index}
                   whileHover={{ scale: 1.05 }}
-                  className={`bg-gradient-to-br ${juice.color} p-8 rounded-2xl text-white shadow-lg`}
+                  className="bg-white p-6 rounded-2xl shadow-lg text-center"
                 >
-                  <div className="text-center">
-                    <div className="bg-white/20 w-16 h-16 rounded-full mx-auto mb-4 flex items-center justify-center">
-                      <Droplets />
-                    </div>
-                    <h3 className="text-xl font-bold">{juice.name}</h3>
-                  </div>
+                  <img
+                    src={juice.image}
+                    alt={juice.name}
+                    className="w-32 h-32 object-contain mx-auto mb-4"
+                  />
+                  <h3 className="text-xl font-bold text-gray-800">
+                    {juice.name}
+                  </h3>
                 </motion.div>
               ))}
             </div>
@@ -193,3 +203,4 @@ function Home() {
 }
 
 export default Home;
+

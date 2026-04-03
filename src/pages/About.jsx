@@ -39,7 +39,7 @@ function About() {
     { year: '2017', event: 'Launched Fruitasty café for fresh juice and hangout experience' },
     { year: '2020', event: 'Expanded Fruitasty into multiple café outlets' },
     { year: '2024', event: 'Successfully running 5+ Fruitasty franchise outlets' },
-    { year: '2025', event: 'Introduced budget-friendly model under ₹2.5 Lakhs' },
+    { year: '2025', event: 'Introduced budget-friendly model under ₹3.9 Lakhs' },
     { year: '2026', event: 'Launched Farm Fresh Juice kiosk model for mass market' },
   ];
 
@@ -88,7 +88,7 @@ function About() {
               <p className="text-lg text-gray-700">
                 Over time, Fruitasty expanded into 5+ successful franchise outlets.
                 Seeing the demand for affordable business models, we introduced a
-                budget-friendly setup under ₹2.5 Lakhs to help new entrepreneurs start easily.
+                budget-friendly setup under ₹3.9 Lakhs to help new entrepreneurs start easily.
               </p>
 
               <p className="text-lg text-gray-700">
@@ -106,11 +106,11 @@ function About() {
             >
               <div className="space-y-6">
                 <div>
-                  <h3 className="text-4xl font-bold">5+</h3>
+                  <h3 className="text-4xl font-bold">7+</h3>
                   <p>Fruitasty Outlets</p>
                 </div>
                 <div>
-                  <h3 className="text-4xl font-bold">₹2.5L</h3>
+                  <h3 className="text-4xl font-bold">₹3.9L</h3>
                   <p>Budget Model</p>
                 </div>
                 <div>
