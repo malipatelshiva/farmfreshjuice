@@ -17,7 +17,7 @@ function Franchise() {
     {
       icon: DollarSign,
       title: 'Low Investment',
-      description: 'Start your juice business under ₹2.5 Lakhs.',
+      description: 'Start your juice business under ₹3.9 Lakhs.',
     },
     {
       icon: TrendingUp,
@@ -44,7 +44,7 @@ function Franchise() {
             Start Your Juice Business
           </h1>
           <p className="text-xl mb-6">
-            Investment ₹2.5 Lakhs • Daily Income • High Demand
+            Investment ₹3.9 Lakhs • Daily Income • High Demand
           </p>
 
           <button
@@ -120,7 +120,7 @@ function Franchise() {
             <div className="space-y-4">
               {[
                 'Small space (kiosk/shop)',
-                'Basic investment ₹2.5L',
+                'Basic investment ₹3.9L',
                 'Interest in business',
                 'Daily operation management',
               ].map((item, i) => (
