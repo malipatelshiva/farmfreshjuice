@@ -82,7 +82,7 @@ function Home() {
               transition={{ delay: 0.4 }}
               className="text-lg sm:text-xl text-gray-600 mb-8 max-w-2xl mx-auto"
             >
-              Launch your own franchise under ₹3.9 Lakhs 🚀  
+              Launch your own franchise under ₹3.99 Lakhs 🚀  
               Proven model • High demand • Daily income
             </motion.p>
 
