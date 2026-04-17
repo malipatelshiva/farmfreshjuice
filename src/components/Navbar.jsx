@@ -2,11 +2,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import { useState } from 'react';
-
-// ✅ LOGO
 import logo from '../assets/logo.png';
-
-// ✅ CONTACT MODAL
 import ContactModal from './ContactModal';
 
 function Navbar() {
@@ -25,87 +21,87 @@ function Navbar() {
 
   return (
     <>
-      <nav className="sticky top-0 z-50 bg-white/90 backdrop-blur-md shadow-md">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
-          <div className="flex justify-between items-center h-16">
+      {/* 🔥 NAVBAR */}
+      <nav className="fixed top-0 left-0 w-full z-50 bg-white/70 backdrop-blur-xl border-b border-gray-100">
+        <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-20">
 
-            {/* 🔥 LOGO */}
-            <Link to="/" className="flex items-center space-x-2">
-              <motion.img
-                src={logo}
-                alt="Farm Fresh Juice"
-                whileHover={{ scale: 1.05 }}
-                className="h-12 w-auto object-contain"
-              />
-              <span className="text-lg md:text-xl font-semibold text-green-700">
-                Farm Fresh
-              </span>
-            </Link>
+          {/* 🔥 LOGO */}
+          <Link to="/" className="flex items-center gap-3">
+            <motion.img
+              src={logo}
+              alt="Farm Fresh Juice"
+              whileHover={{ scale: 1.05 }}
+              className="h-12 object-contain"
+            />
+            <span className="text-xl font-semibold tracking-tight">
+              Farm Fresh Juice
+            </span>
+          </Link>
 
-            {/* 🔥 DESKTOP MENU */}
-            <div className="hidden md:flex space-x-8 items-center">
-              {navLinks.map((link) => (
-                <Link key={link.to} to={link.to}>
-                  <span
-                    className={`${
-                      isActive(link.to)
-                        ? 'text-green-600 font-semibold'
-                        : 'text-gray-700 hover:text-green-600'
-                    }`}
-                  >
-                    {link.label}
-                  </span>
-                </Link>
-              ))}
+          {/* 🔥 DESKTOP MENU */}
+          <div className="hidden md:flex items-center gap-8">
 
-              {/* 🔥 CONTACT BUTTON */}
-              <button
-                onClick={() => setOpenContact(true)}
-                className="bg-green-600 text-white px-5 py-2 rounded-lg hover:bg-green-700"
-              >
-                Apply Now 🚀
-              </button>
-            </div>
+            {navLinks.map((link) => (
+              <Link key={link.to} to={link.to}>
+                <span
+                  className={`relative text-sm font-medium transition ${
+                    isActive(link.to)
+                      ? 'text-black'
+                      : 'text-gray-600 hover:text-black'
+                  }`}
+                >
+                  {link.label}
 
-            {/* 🔥 MOBILE BUTTON */}
+                  {/* 🔥 UNDERLINE EFFECT */}
+                  {isActive(link.to) && (
+                    <span className="absolute left-0 -bottom-1 w-full h-[2px] bg-black"></span>
+                  )}
+                </span>
+              </Link>
+            ))}
+
+            {/* 🔥 PREMIUM CTA BUTTON */}
             <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="md:hidden p-2"
+              onClick={() => setOpenContact(true)}
+              className="bg-black text-white px-6 py-2.5 rounded-full text-sm font-medium hover:bg-gray-800 transition"
             >
-              {isOpen ? <X /> : <Menu />}
+              Get Franchise
             </button>
           </div>
+
+          {/* 🔥 MOBILE ICON */}
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="md:hidden"
+          >
+            {isOpen ? <X size={28} /> : <Menu size={28} />}
+          </button>
         </div>
 
         {/* 🔥 MOBILE MENU */}
         {isOpen && (
-          <div className="md:hidden bg-white border-t">
-            <div className="px-4 py-4 space-y-3">
+          <div className="md:hidden bg-white border-t px-6 py-6 space-y-4">
 
-              {navLinks.map((link) => (
-                <Link
-                  key={link.to}
-                  to={link.to}
-                  onClick={() => setIsOpen(false)}
-                  className="block"
-                >
-                  {link.label}
-                </Link>
-              ))}
-
-              {/* 🔥 CONTACT BUTTON MOBILE */}
-              <button
-                onClick={() => {
-                  setIsOpen(false);
-                  setOpenContact(true);
-                }}
-                className="w-full bg-green-600 text-white py-2 rounded"
+            {navLinks.map((link) => (
+              <Link
+                key={link.to}
+                to={link.to}
+                onClick={() => setIsOpen(false)}
+                className="block text-lg text-gray-700"
               >
-                Apply Now 🚀
-              </button>
+                {link.label}
+              </Link>
+            ))}
 
-            </div>
+            <button
+              onClick={() => {
+                setIsOpen(false);
+                setOpenContact(true);
+              }}
+              className="w-full bg-black text-white py-3 rounded-full"
+            >
+              Get Franchise
+            </button>
           </div>
         )}
       </nav>

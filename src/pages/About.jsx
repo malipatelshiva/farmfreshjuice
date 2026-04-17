@@ -2,173 +2,170 @@ import { motion } from 'framer-motion';
 import { Target, Users, Award, Sprout } from 'lucide-react';
 import PageTransition from '../components/PageTransition';
 
+// ✅ IMPORT YOUR REAL IMAGE
+import franchise1 from '../assets/juices/Franchise.png';
+
 function About() {
+
   const values = [
     {
       icon: Target,
       title: 'Our Mission',
       description:
-        'To deliver fresh, nutritious juices while creating affordable business opportunities for everyone.',
+        'To deliver fresh juices while creating affordable business opportunities.',
       color: 'bg-green-100 text-green-600',
     },
     {
       icon: Sprout,
       title: 'Sustainability',
       description:
-        'We focus on natural ingredients, eco-friendly practices, and supporting local fruit vendors.',
+        'We focus on natural ingredients and eco-friendly practices.',
       color: 'bg-blue-100 text-blue-600',
     },
     {
       icon: Award,
       title: 'Quality First',
       description:
-        'Every juice is prepared fresh with high-quality fruits and strict hygiene standards.',
+        'Fresh juices with strict hygiene and premium quality.',
       color: 'bg-orange-100 text-orange-600',
     },
     {
       icon: Users,
       title: 'Community Growth',
       description:
-        'We help entrepreneurs grow through our affordable franchise and kiosk models.',
+        'Helping new entrepreneurs grow with our franchise model.',
       color: 'bg-pink-100 text-pink-600',
     },
   ];
 
   const timeline = [
-    { year: '2015', event: 'Started planning a café model called Fruitasty' },
-    { year: '2017', event: 'Launched Fruitasty café for fresh juice and hangout experience' },
-    { year: '2020', event: 'Expanded Fruitasty into multiple café outlets' },
-    { year: '2024', event: 'Successfully running 5+ Fruitasty franchise outlets' },
-    { year: '2025', event: 'Introduced budget-friendly model under ₹3.9 Lakhs' },
-    { year: '2026', event: 'Launched Farm Fresh Juice kiosk model for mass market' },
+    { year: '2015', event: 'Started Fruitasty café concept' },
+    { year: '2017', event: 'Launched first Fruitasty café' },
+    { year: '2020', event: 'Expanded into multiple outlets' },
+    { year: '2024', event: '5+ successful franchise outlets' },
+    { year: '2025', event: 'Introduced ₹3.9 Lakhs model' },
+    { year: '2026', event: 'Launched Farm Fresh Juice kiosks' },
   ];
 
   return (
     <PageTransition>
-      <div className="min-h-screen">
+      <div className="min-h-screen pt-20">
 
-        {/* HERO SECTION */}
-        <section className="relative py-20 px-4 sm:px-6 lg:px-8">
-          <div className="max-w-7xl mx-auto text-center">
-            
-            <motion.h1
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="text-5xl sm:text-6xl font-bold mb-6 bg-gradient-to-r from-green-600 to-green-800 bg-clip-text text-transparent"
-            >
-              About Us
-            </motion.h1>
+        {/* 🔥 HERO */}
+        <section className="text-center py-20 px-6 bg-[#CFF5E7]">
+          <h1 className="text-5xl font-bold mb-6">
+            About Farm Fresh Juice
+          </h1>
 
-            <p className="text-xl text-gray-700 max-w-3xl mx-auto">
-              From a small café idea to a growing juice brand, our journey is driven by passion, quality, and opportunity.
-            </p>
-          </div>
+          <p className="text-lg text-gray-700 max-w-2xl mx-auto">
+            From a small café idea to a growing franchise brand, our journey is built on passion and opportunity.
+          </p>
         </section>
 
-        {/* STORY SECTION */}
-        <section className="py-16 px-4 sm:px-6 lg:px-8">
-          <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
+        {/* 🔥 STORY + IMAGE */}
+        <section className="py-20 px-6">
+          <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 items-center">
 
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="space-y-6"
-            >
-              <h2 className="text-3xl sm:text-4xl font-bold text-gray-800">
-                From Fruitasty Café to Farm Fresh Juice
+            <div>
+              <h2 className="text-3xl font-bold mb-4">
+                Our Journey
               </h2>
 
-              <p className="text-lg text-gray-700">
-                Our journey began in 2015 with a vision to create a unique café experience
-                focused on fresh juices and healthy living. This idea became Fruitasty,
-                a place where people could relax, enjoy fresh drinks, and connect.
+              <p className="text-gray-700 mb-4">
+                Started in 2015 as Fruitasty café, we focused on fresh juices and customer experience.
               </p>
 
-              <p className="text-lg text-gray-700">
-                Over time, Fruitasty expanded into 5+ successful franchise outlets.
-                Seeing the demand for affordable business models, we introduced a
-                budget-friendly setup under ₹3.9 Lakhs to help new entrepreneurs start easily.
+              <p className="text-gray-700 mb-4">
+                Over time, we expanded into multiple outlets and built a strong franchise model.
               </p>
 
-              <p className="text-lg text-gray-700">
-                In 2026, we launched Farm Fresh Juice — a kiosk-based model designed
-                to serve fresh juices quickly and reach more customers in high-traffic areas.
+              <p className="text-gray-700">
+                Today, Farm Fresh Juice brings a low-investment business opportunity for everyone.
               </p>
-            </motion.div>
+            </div>
 
-            {/* STATS */}
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="bg-gradient-to-br from-green-400 to-green-600 p-10 rounded-3xl text-white shadow-xl"
-            >
-              <div className="space-y-6">
-                <div>
-                  <h3 className="text-4xl font-bold">7+</h3>
-                  <p>Fruitasty Outlets</p>
-                </div>
-                <div>
-                  <h3 className="text-4xl font-bold">₹3.9L</h3>
-                  <p>Budget Model</p>
-                </div>
-                <div>
-                  <h3 className="text-4xl font-bold">2026</h3>
-                  <p>Farm Fresh Launch</p>
-                </div>
+            {/* 📸 IMAGE */}
+            <img
+              src={franchise1}
+              className="rounded-2xl shadow-lg"
+            />
+
+          </div>
+        </section>
+
+        {/* 🔥 STATS */}
+        <section className="py-20 bg-black text-white text-center">
+          <div className="grid md:grid-cols-3 gap-10 max-w-5xl mx-auto">
+
+            <div>
+              <h3 className="text-4xl font-bold">7+</h3>
+              <p>Outlets Running</p>
+            </div>
+
+            <div>
+              <h3 className="text-4xl font-bold">₹3.99L</h3>
+              <p>Starting Investment</p>
+            </div>
+
+            <div>
+              <h3 className="text-4xl font-bold">2026</h3>
+              <p>New Model Launch</p>
+            </div>
+
+          </div>
+        </section>
+
+        {/* 🔥 VALUES */}
+        <section className="py-20 px-6">
+          <h2 className="text-4xl font-bold text-center mb-12">
+            Our Values
+          </h2>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+            {values.map((value, i) => (
+              <div key={i} className="card">
+                <value.icon className={`w-10 h-10 ${value.color} p-2 rounded-lg mb-4`} />
+                <h3 className="font-bold">{value.title}</h3>
+                <p className="text-gray-600">{value.description}</p>
               </div>
-            </motion.div>
-
+            ))}
           </div>
         </section>
 
-        {/* VALUES */}
-        <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
-          <div className="max-w-7xl mx-auto">
+        {/* 🔥 TIMELINE */}
+        <section className="py-20 px-6 bg-gray-50">
+          <h2 className="text-4xl font-bold text-center mb-12">
+            Our Growth Journey
+          </h2>
 
-            <h2 className="text-4xl font-bold text-center mb-12 text-gray-800">
-              Our Values
-            </h2>
-
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {values.map((value, index) => (
-                <motion.div
-                  key={index}
-                  whileHover={{ y: -10 }}
-                  className="bg-white p-6 rounded-xl shadow-lg"
-                >
-                  <div className={`${value.color} w-14 h-14 flex items-center justify-center rounded-xl mb-4`}>
-                    <value.icon className="w-6 h-6" />
-                  </div>
-                  <h3 className="font-bold text-lg mb-2">{value.title}</h3>
-                  <p className="text-gray-600">{value.description}</p>
-                </motion.div>
-              ))}
-            </div>
-
+          <div className="space-y-6 max-w-4xl mx-auto">
+            {timeline.map((item, i) => (
+              <div key={i} className="card flex justify-between">
+                <span className="font-bold text-green-600">{item.year}</span>
+                <span>{item.event}</span>
+              </div>
+            ))}
           </div>
         </section>
 
-        {/* TIMELINE */}
-        <section className="py-20 px-4 sm:px-6 lg:px-8">
-          <div className="max-w-5xl mx-auto">
+        {/* 🔥 CTA */}
+        <section className="text-center py-20 px-6">
+          <div className="bg-black text-white p-10 rounded-3xl max-w-3xl mx-auto">
 
-            <h2 className="text-4xl font-bold text-center mb-16 text-gray-800">
-              Our Journey
+            <h2 className="text-3xl font-bold mb-4">
+              Become a Franchise Owner 🚀
             </h2>
 
-            <div className="space-y-8">
-              {timeline.map((item, index) => (
-                <motion.div
-                  key={index}
-                  className="bg-white p-6 rounded-xl shadow-md flex justify-between"
-                >
-                  <h3 className="font-bold text-green-600">{item.year}</h3>
-                  <p className="text-gray-700">{item.event}</p>
-                </motion.div>
-              ))}
-            </div>
+            <p className="mb-6 text-gray-300">
+              Join our growing network and start your business today.
+            </p>
+
+            <a
+              href="/franchise"
+              className="bg-white text-black px-6 py-3 rounded-full"
+            >
+              Apply Now
+            </a>
 
           </div>
         </section>

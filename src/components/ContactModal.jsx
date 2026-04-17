@@ -9,24 +9,23 @@ export default function ContactModal({ isOpen, onClose }) {
     name: "",
     phone: "",
     city: "",
+    budget: "",
+    start: "",
+    manage: "",
   });
 
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
 
-  // 🔒 Lock scroll
   useEffect(() => {
     document.body.style.overflow = isOpen ? "hidden" : "auto";
   }, [isOpen]);
 
-  // ✅ VALIDATION
   const validate = () => {
     let newErrors = {};
 
-    if (!formData.name.trim()) {
-      newErrors.name = "Full name required";
-    }
+    if (!formData.name.trim()) newErrors.name = "Full name required";
 
     if (!formData.phone.trim()) {
       newErrors.phone = "Phone required";
@@ -34,35 +33,61 @@ export default function ContactModal({ isOpen, onClose }) {
       newErrors.phone = "Invalid number";
     }
 
-    if (!formData.city.trim()) {
-      newErrors.city = "City required";
-    }
+    if (!formData.city.trim()) newErrors.city = "City required";
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
-  // ✅ SUBMIT
+  // 🔥 WHATSAPP FUNCTION
+  const sendToWhatsApp = () => {
+    const message = `🚀 New Franchise Enquiry
+
+👤 Name: ${formData.name}
+📞 Phone: ${formData.phone}
+📍 City: ${formData.city}
+
+💰 Budget: ${formData.budget}
+⏳ Start Time: ${formData.start}
+👨‍💼 Managed By: ${formData.manage}
+
+Interested in FarmFresh Juice Franchise. Please guide me.`;
+
+    const encodedMessage = encodeURIComponent(message);
+
+    window.open(
+      `https://wa.me/917221892189?text=${encodedMessage}`,
+      "_blank"
+    );
+  };
+
+  // 🔥 SUBMIT
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     if (!validate()) return;
 
     setIsSubmitting(true);
 
     try {
       await emailjs.send(
-        "service_cnejjpk",        // ✅ Replace if needed
-        "template_5vp7u8l",       // ✅ Replace if needed
+        "service_8appqe7",
+        "template_t2v8rno",
         {
           name: formData.name,
           phone: formData.phone,
           city: formData.city,
+          budget: formData.budget,
+          start: formData.start,
+          manage: formData.manage,
+          time: new Date().toLocaleString(),
         },
-        "rGp0-DjGBC_5kazg0"       // ✅ Replace if needed
+        "9ITs0pGat0pu-CZqP"
       );
 
       setIsSuccess(true);
+
+      // 🔥 WHATSAPP TRIGGER
+      sendToWhatsApp();
 
       setTimeout(() => {
         setIsSuccess(false);
@@ -71,12 +96,14 @@ export default function ContactModal({ isOpen, onClose }) {
           name: "",
           phone: "",
           city: "",
+          budget: "",
+          start: "",
+          manage: "",
         });
       }, 2000);
 
     } catch (err) {
-      console.error(err);
-      alert("Email failed. Check EmailJS setup");
+      alert("Failed to send enquiry");
     } finally {
       setIsSubmitting(false);
     }
@@ -99,9 +126,8 @@ export default function ContactModal({ isOpen, onClose }) {
           {/* MODAL */}
           <motion.div
             className="relative bg-white w-full max-w-md rounded-2xl p-6 shadow-xl"
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            exit={{ scale: 0.8, opacity: 0 }}
+            initial={{ scale: 0.9 }}
+            animate={{ scale: 1 }}
           >
 
             {isSuccess ? (
@@ -119,12 +145,16 @@ export default function ContactModal({ isOpen, onClose }) {
                 {/* HEADER */}
                 <div className="flex justify-between items-center mb-4">
                   <h2 className="text-lg font-bold">
-                    Farm Fresh Franchise
+                    Start Franchise (₹3.99 Lakhs*)
                   </h2>
                   <button onClick={onClose}>
                     <X />
                   </button>
                 </div>
+
+                <p className="text-sm text-gray-500 mb-4">
+                  *Final investment depends on location & size
+                </p>
 
                 {/* FORM */}
                 <form onSubmit={handleSubmit} className="space-y-3">
@@ -138,9 +168,6 @@ export default function ContactModal({ isOpen, onClose }) {
                       setFormData({ ...formData, name: e.target.value })
                     }
                   />
-                  {errors.name && (
-                    <p className="text-red-500 text-xs">{errors.name}</p>
-                  )}
 
                   <input
                     type="tel"
@@ -151,9 +178,6 @@ export default function ContactModal({ isOpen, onClose }) {
                       setFormData({ ...formData, phone: e.target.value })
                     }
                   />
-                  {errors.phone && (
-                    <p className="text-red-500 text-xs">{errors.phone}</p>
-                  )}
 
                   <input
                     type="text"
@@ -164,14 +188,47 @@ export default function ContactModal({ isOpen, onClose }) {
                       setFormData({ ...formData, city: e.target.value })
                     }
                   />
-                  {errors.city && (
-                    <p className="text-red-500 text-xs">{errors.city}</p>
-                  )}
+
+                  <select
+                    className="w-full border p-3 rounded-lg"
+                    onChange={(e) =>
+                      setFormData({ ...formData, budget: e.target.value })
+                    }
+                  >
+                    <option value="">Investment Budget</option>
+                    <option>₹4 – ₹5 Lakhs</option>
+                    <option>₹5 – ₹8 Lakhs</option>
+                    <option>Above ₹8 Lakhs</option>
+                  </select>
+
+                  <select
+                    className="w-full border p-3 rounded-lg"
+                    onChange={(e) =>
+                      setFormData({ ...formData, start: e.target.value })
+                    }
+                  >
+                    <option value="">When to Start?</option>
+                    <option>Immediately</option>
+                    <option>Within 1 month</option>
+                    <option>Within 3 months</option>
+                  </select>
+
+                  <select
+                    className="w-full border p-3 rounded-lg"
+                    onChange={(e) =>
+                      setFormData({ ...formData, manage: e.target.value })
+                    }
+                  >
+                    <option value="">Who will manage?</option>
+                    <option>Self</option>
+                    <option>Family</option>
+                    <option>Manager</option>
+                  </select>
 
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full bg-green-600 text-white py-3 rounded-lg flex items-center justify-center gap-2"
+                    className="w-full bg-black text-white py-3 rounded-lg flex items-center justify-center gap-2"
                   >
                     <Send size={16} />
                     {isSubmitting ? "Sending..." : "Submit Enquiry"}

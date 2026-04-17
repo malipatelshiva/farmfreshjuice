@@ -1,199 +1,187 @@
-
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { Leaf, Heart, Droplets, ArrowRight } from 'lucide-react';
+import { Leaf, Heart, Droplets } from 'lucide-react';
 import PageTransition from '../components/PageTransition';
-
-// ✅ ASSETS
-import logo from '../assets/logo.png';
 import FloatingFruits from '../components/FloatingFruits';
+import { useRef } from 'react';
 
-// ✅ NEW JUICE IMAGES
-import avocado from '../assets/juices/Avocado.png';
-import apple from '../assets/juices/Apple.png';
-import orange from '../assets/juices/Orange.png';
+// ✅ IMPORT IMAGES
+import franchise1 from '../assets/juices/Franchise.png';
+import franchise2 from '../assets/juices/Franchise1.png';
+import franchise3 from '../assets/juices/Franchise2.png';
+import qr from '../assets/juices/review-qr.png';
+
+// ✅ IMPORT LOGO
+import logo from '../assets/logo.png';
+
+// 🔥 ANIMATIONS
+const fadeUp = {
+  hidden: { opacity: 0, y: 40 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+};
 
 function Home() {
+
+  const mapRef = useRef(null);
+
+  const changeMap = (location) => {
+    if (!mapRef.current) return;
+
+    const urls = {
+      armur: "https://www.google.com/maps?q=Armur,Telangana&output=embed",
+      chevella: "https://www.google.com/maps?q=Chevella,Telangana&output=embed",
+      kompally: "https://www.google.com/maps?q=Kompally,Hyderabad&output=embed",
+      patancheruvu: "https://www.google.com/maps?q=Patancheruvu,Hyderabad&output=embed",
+    };
+
+    mapRef.current.src = urls[location];
+  };
+
   const features = [
     {
       icon: Leaf,
-      title: 'All Natural',
-      description: 'No artificial colors or preservatives',
+      title: 'High Demand Market',
+      description: 'Juice business is growing fast with health trends',
       color: 'text-green-500',
     },
     {
       icon: Heart,
-      title: 'Healthy Choice',
-      description: 'Packed with vitamins and nutrients',
+      title: 'Low Investment',
+      description: 'Start with minimal investment and quick returns',
       color: 'text-red-500',
     },
     {
       icon: Droplets,
-      title: 'Pure & Clean',
-      description: 'Highest quality standards maintained',
+      title: 'Easy Operations',
+      description: 'Simple process, no complex skills required',
       color: 'text-blue-500',
     },
   ];
 
-  // ✅ UPDATED JUICES WITH IMAGES
-  const juices = [
-    { name: 'Apple Juice', image: apple },
-    { name: 'Orange Juice', image: orange },
-    { name: 'Avocado Juice', image: avocado },
-  ];
-
   return (
     <PageTransition>
-      <div className="min-h-screen relative overflow-hidden bg-white">
+      <div className="min-h-screen pt-20 bg-white">
 
-        {/* 🔥 FLOATING BACKGROUND */}
         <FloatingFruits />
 
         {/* 🔥 HERO */}
-        <section className="relative z-20 min-h-[90vh] flex items-center justify-center px-4">
-          <div className="max-w-6xl text-center">
+        <section className="min-h-screen flex items-center justify-center px-6 bg-[#CFF5E7] text-center">
+          <div>
 
-            {/* LOGO */}
+            {/* 🔥 LOGO */}
             <motion.img
               src={logo}
               alt="Farm Fresh Juice"
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={{ duration: 0.5, type: 'spring' }}
-              className="h-24 sm:h-28 mx-auto mb-6 drop-shadow-xl"
+              className="w-32 mx-auto mb-6"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
             />
 
-            {/* HEADING */}
+            {/* 🔥 TITLE */}
             <motion.h1
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-              className="text-4xl sm:text-6xl lg:text-7xl font-bold mb-6 leading-tight"
+              variants={fadeUp}
+              initial="hidden"
+              animate="show"
+              className="text-5xl md:text-7xl font-bold"
             >
-              <span className="bg-gradient-to-r from-green-600 to-green-800 bg-clip-text text-transparent">
-                Start Your Own Juice Business
-              </span>
+              Build Your Own Juice Business
+              <span className="block text-green-700">In ₹3.99 Lakhs</span>
             </motion.h1>
 
-            {/* SUBTEXT */}
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.4 }}
-              className="text-lg sm:text-xl text-gray-600 mb-8 max-w-2xl mx-auto"
-            >
-              Launch your own franchise under ₹3.9 Lakhs 🚀  
-              Proven model • High demand • Daily income
-            </motion.p>
-
-            {/* CTA BUTTONS */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.6 }}
-              className="flex flex-wrap justify-center gap-4"
-            >
-              <Link
-                to="/franchise"
-                className="bg-green-600 text-white px-8 py-4 rounded-full font-semibold text-lg flex items-center gap-2 hover:bg-green-700 shadow-xl"
-              >
-                Apply Now
-                <ArrowRight size={18} />
-              </Link>
-
-              <a
-                href="https://wa.me/917221892189"
-                target="_blank"
-                rel="noreferrer"
-                className="border-2 border-green-600 text-green-600 px-8 py-4 rounded-full font-semibold text-lg hover:bg-green-50"
-              >
-                Talk on WhatsApp
-              </a>
-            </motion.div>
-
-            {/* TRUST BADGES */}
-            <p className="mt-6 text-gray-500 text-sm">
-              ✔ Low Investment &nbsp; ✔ High Profit &nbsp; ✔ Easy Setup
+            <p className="mt-6 text-lg text-gray-700">
+              Complete setup, training, and support to start earning from day one.
             </p>
 
+            <div className="flex gap-4 justify-center mt-8 flex-wrap">
+              <Link to="/franchise" className="btn-primary">
+                Apply Now
+              </Link>
+
+              <a href="https://wa.me/917221892189" className="btn-secondary">
+                WhatsApp
+              </a>
+            </div>
+
+          </div>
+        </section>
+
+        {/* 💰 INVESTMENT */}
+        <section className="text-center py-20">
+          <h2 className="text-4xl font-bold mb-10">Investment Overview</h2>
+
+          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            {[
+              { title: "Total Investment", value: "₹3.99 Lakhs" },
+              { title: "Setup Time", value: "7 Days" },
+              { title: "Support", value: "Full Training" },
+            ].map((item, i) => (
+              <div key={i} className="card">
+                <h3 className="text-gray-500">{item.title}</h3>
+                <p className="text-2xl font-bold">{item.value}</p>
+              </div>
+            ))}
           </div>
         </section>
 
         {/* 🔥 FEATURES */}
-        <section className="relative z-20 py-20 px-4">
-          <div className="max-w-6xl mx-auto">
+        <section className="py-20 text-center">
+          <h2 className="text-4xl font-bold mb-10">Why Choose Us?</h2>
 
-            <h2 className="text-3xl sm:text-4xl font-bold text-center mb-14">
-              Why Choose Us?
-            </h2>
-
-            <div className="grid md:grid-cols-3 gap-8">
-              {features.map((feature, index) => (
-                <motion.div
-                  key={index}
-                  whileHover={{ y: -10 }}
-                  className="bg-white p-8 rounded-2xl shadow-md hover:shadow-xl transition"
-                >
-                  <feature.icon className={`w-12 h-12 ${feature.color} mb-4`} />
-                  <h3 className="text-lg font-bold mb-2">{feature.title}</h3>
-                  <p className="text-gray-600 text-sm">{feature.description}</p>
-                </motion.div>
-              ))}
-            </div>
-
+          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            {features.map((f, i) => (
+              <div key={i} className="card">
+                <f.icon className={`w-10 h-10 mx-auto ${f.color}`} />
+                <h3 className="font-bold mt-3">{f.title}</h3>
+                <p className="text-gray-600">{f.description}</p>
+              </div>
+            ))}
           </div>
         </section>
 
-        {/* 🔥 PRODUCTS */}
-        <section className="relative z-20 py-20 px-4 bg-gray-50">
-          <div className="max-w-6xl mx-auto">
+        {/* 📸 PHOTOS */}
+        <section className="py-20 text-center">
+          <h2 className="text-4xl font-bold mb-10">Real Franchise Setups</h2>
 
-            <h2 className="text-3xl sm:text-4xl font-bold text-center mb-14">
-              Our Popular Juices
-            </h2>
-
-            <div className="grid md:grid-cols-3 gap-8">
-              {juices.map((juice, index) => (
-                <motion.div
-                  key={index}
-                  whileHover={{ scale: 1.05 }}
-                  className="bg-white p-6 rounded-2xl shadow-lg text-center"
-                >
-                  <img
-                    src={juice.image}
-                    alt={juice.name}
-                    className="w-32 h-32 object-contain mx-auto mb-4"
-                  />
-                  <h3 className="text-xl font-bold text-gray-800">
-                    {juice.name}
-                  </h3>
-                </motion.div>
-              ))}
-            </div>
-
+          <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+            {[franchise1, franchise2, franchise3].map((img, i) => (
+              <img key={i} src={img} className="rounded-2xl shadow-lg" />
+            ))}
           </div>
         </section>
 
-        {/* 🔥 FINAL CTA */}
-        <section className="relative z-20 py-20 px-4">
-          <div className="max-w-3xl mx-auto text-center">
+        {/* 📍 MAP */}
+        <section className="bg-gray-100 py-20 text-center px-6">
+          <h2 className="text-4xl font-bold mb-6">Our Locations</h2>
 
-            <div className="bg-green-600 text-white p-10 rounded-3xl shadow-2xl">
-              <h2 className="text-2xl sm:text-3xl font-bold mb-4">
-                Ready to Start Your Business?
-              </h2>
-              <p className="mb-6 text-green-100">
-                Join Farm Fresh Juice and build your own successful franchise.
-              </p>
+          <div className="max-w-5xl mx-auto rounded-2xl overflow-hidden shadow-lg">
+            <iframe
+              ref={mapRef}
+              src="https://www.google.com/maps?q=Armur,Telangana&output=embed"
+              className="w-full h-[400px]"
+            ></iframe>
+          </div>
 
-              <Link
-                to="/franchise"
-                className="bg-white text-green-600 px-6 py-3 rounded-full font-semibold"
-              >
-                Get Franchise Details
-              </Link>
-            </div>
+          <div className="flex flex-wrap justify-center gap-4 mt-6">
+            <button onClick={() => changeMap("armur")} className="btn-secondary">Armur</button>
+            <button onClick={() => changeMap("chevella")} className="btn-secondary">Chevella</button>
+            <button onClick={() => changeMap("kompally")} className="btn-secondary">Kompally</button>
+            <button onClick={() => changeMap("patancheruvu")} className="btn-secondary">Patancheruvu</button>
+          </div>
+        </section>
 
+        {/* 📱 QR */}
+        <section className="py-20 text-center bg-green-50">
+          <h2 className="text-3xl font-bold mb-4">Scan & Review Us ⭐</h2>
+          <img src={qr} className="w-40 mx-auto shadow-lg rounded-lg" />
+        </section>
+
+        {/* 🚀 CTA */}
+        <section className="py-20 text-center">
+          <div className="bg-black text-white p-10 rounded-3xl max-w-3xl mx-auto">
+            <h2 className="text-3xl font-bold mb-4">Start Your Franchise Today 🚀</h2>
+            <Link to="/franchise" className="bg-white text-black px-6 py-3 rounded-full">
+              Apply Now
+            </Link>
           </div>
         </section>
 
@@ -203,4 +191,3 @@ function Home() {
 }
 
 export default Home;
-
